@@ -1,0 +1,43 @@
+<template name="promociones">
+	<div class="contenedor" style="background-color: {{fondo}}">
+		<div class="topmenu" style="background-color: {{menu}}">
+
+			<span class="log">
+				<a href="/home" style="color: #34495e"><i class="fa fa-chevron-left" aria-hidden="true"></i></a>
+			</span>
+			
+
+			<span class="empresa">Promociones</span>
+		</div>
+		{{#each promociones}}
+		<div class="valor">
+			<h4 style="color: rgba(52, 73, 94,1.0);">{{this.titulo}}</h4>
+			<p style="font-size: 15px; padding-left: 10px; color: rgba(52, 73, 94,1.0)">
+				{{this.descripcion}}
+			</p>		
+		</div>
+		{{/each}}
+		
+	</div>
+	<div class="menu" style="background-color: {{menu}}">
+		{{#if currentUser}}
+		
+		{{else}}
+		<a href="/login">
+			<p>
+				<i class="fa fa-paper-plane" aria-hidden="true"></i>
+				Ingresar
+			</p>
+			
+		</a>
+		{{/if}}
+		<a href="/home">
+			<p>
+				<i class="fa fa-chevron-left" aria-hidden="true"></i>
+				Regresar
+			</p>
+			
+		</a>
+		
+	</div>
+</template>

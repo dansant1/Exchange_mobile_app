@@ -1,0 +1,343 @@
+<template name="Home">
+{{#if currentUser}}
+	{{#if currentUser.profile.verificado}}
+	<div class="contenedor" style="background-color: {{fondo}}; height: 100vh;">
+		<div style="width: 100%; height: 53px; background: {{menu}}; padding: 0">
+			<ul style="display: block; padding: 0; height: 55px">
+				{{#if currentUser}}
+				<li class="out" style="color: #ffffff; display: inline-block; width: 32%; padding: 5px; margin: 0 auto; text-align: left;">Logout</li>
+				{{else}}
+				<li style="color: #ffffff; display: inline-block; width: 32%; padding: 5px; margin: 0 auto; text-align: left;"> <a href="/login" style="color:white">Login</a></li>
+				{{/if}}
+				<li style="color: #ffffff; display: inline-block; width: 32%; padding: 5px; margin: 0 auto; text-align: center;">A&E Envíos</li>
+				<li class="chat" style="color: #ffffff; display: inline-block; width: 32%; padding: 5px; margin: 0 auto; text-align: right; height: 70px">Atencion al Cliente</li>
+			</ul>
+		</div>
+		<div class="tarifas" style="max-height: 120px: min-height: 100px">
+			<div class="row">
+					{{#each landing}}
+						<img src="{{this.url}}" style="display: block; width: 91%; margin: 15px auto; border-radius: 4px; max-height: 90px;">
+					{{/each}}
+				</div>
+		</div>
+		<h2 class="titulo" style="background-color: {{menu}}">Tarifas</h2>
+
+		<div class="tarifas" style="width: 90%;
+		height: 105px;
+		overflow-x: scroll;
+		-webkit-overflow-scrolling: touch;
+		padding-top: 4px;
+		white-space: nowrap; display: block">
+		{{#each paises}}
+			<div class="col" style="height: 90px; background-color: {{menu}}; min-width: 100px; max-width: 230px; margin: 1.5px; overflow-x: hidden;
+			overflow-y: scroll;
+			white-space: nowrap;">
+				<h5 style="max-width: 90%; margin-top: 1px;">{{this.nombre}}</h5>
+
+				<table>
+					<tbody>
+						{{#each bancos this._id}}
+						<tr>
+							<td style="font-size: 11px">{{this.nombre}}</td>
+							<td style="font-size: 11px; padding-left: 10px">$ {{cambio}} </td>
+						</tr>
+						{{/each}}
+					</tbody>
+				</table>
+			</div>
+		{{/each}}
+		</div>
+
+		<div class="opciones">
+
+			<div class="fila" style="position: fixed; top: 410px; left: 5%;">
+				<div class="box 1" style="background-color: {{menu}}; border: none; font-size: 13px; height: 61px;">
+					<p>
+						<i class="fa fa-pencil-square-o" style="font-size: 13px;" aria-hidden="true"></i>
+					</p>
+					<h4><a href="/editar" style="font-size: 13px;">Corregir orden</a></h4>
+				</div>
+				<div class="box 2" style="background-color: {{menu}}; border: none; font-size: 13px; height: 61px;">
+					<p>
+						<i class="fa fa-gift" style="font-size: 13px;" aria-hidden="true"></i>
+					</p>
+					<h4><a href="/promociones" style="font-size: 13px;">Promo</a></h4>
+				</div>
+			</div>
+
+			<div class="fila" style="position: fixed; top: 340px; left: 5%;">
+				<div class="box 3" style="background-color: {{menu}}; border: none; font-size: 13px; height: 61px;">
+					<p>
+						<i class="fa fa-calculator" style="font-size: 13px;" aria-hidden="true"></i>
+					</p>
+					<h4><a href="/calculadora" style="font-size: 13px;">Calculadora</a></h4>
+				</div>
+				<div class="box 4" style="background-color: {{menu}}; border: none; font-size: 13px; height: 61px;">
+					<p>
+						<i class="fa fa-paper-plane" style="font-size: 13px;" aria-hidden="true"></i>
+					</p>
+					<h4><a href="/enviar" style="font-size: 13px;">Mandar orden</a></h4>
+				</div>
+			</div>
+
+		</div>
+
+	</div>
+
+	{{#if currentUser}}
+
+	<div class="menu" style="margin-top: 0px; background-color: {{menu}}">
+		<h2>Bienvenido {{currentUser.profile.nombre}}</h2>
+	</div>
+	{{else}}
+		<a href="/registro" class="saltar" style="background-color: {{menu}}">
+		Regístrate
+		</a>
+	{{/if}}
+	{{else}}
+		{{>verificacion}}
+	{{/if}}
+
+{{else}}
+
+<div class="contenedor" style="background-color: {{fondo}}; height: 100vh;">
+
+
+	<div style="width: 100%; height: 53px; background: {{menu}}; padding: 0">
+		<ul style="display: block; padding: 0; height: 55px">
+			{{#if currentUser}}
+			<li class="out" style="color: #ffffff; display: inline-block; width: 32%; padding: 5px; margin: 0 auto; text-align: left;">Logout</li>
+			{{else}}
+			<li style="color: #ffffff; display: inline-block; width: 32%; padding: 5px; margin: 0 auto; text-align: left;"> <a href="/login" style="color:white">Login</a></li>
+			{{/if}}
+			<li style="color: #ffffff; display: inline-block; width: 32%; padding: 5px; margin: 0 auto; text-align: center;">A&E Envíos</li>
+			<li class="chat" style="color: #ffffff; display: inline-block; width: 32%; padding: 5px; margin: 0 auto; text-align: right; height: 70px">Atencion al Cliente</li>
+		</ul>
+	</div>
+
+	<div class="tarifas" style="max-height: 120px: min-height: 100px">
+		<div class="row">
+				{{#each landing}}
+					<img src="{{this.url}}" style="display: block; width: 91%; margin: 15px auto; border-radius: 4px; max-height: 90px;">
+				{{/each}}
+			</div>
+	</div>
+
+
+
+	<h2 class="titulo" style="background-color: {{menu}}">Tarifas</h2>
+
+	<div class="tarifas" style="width: 90%;
+	height: 105px;
+	overflow-x: scroll;
+	-webkit-overflow-scrolling: touch;
+	padding-top: 4px;
+	white-space: nowrap; display: block">
+	{{#each paises}}
+		<div class="col" style="height: 90px; background-color: {{menu}}; min-width: 100px; max-width: 230px; margin: 1.5px; overflow-x: hidden;
+		overflow-y: scroll;
+		white-space: nowrap;">
+			<h5 style="max-width: 90%; margin-top: 1px;">{{this.nombre}}</h5>
+
+			<table>
+				<tbody>
+					{{#each bancos this._id}}
+					<tr>
+						<td style="font-size: 11px">{{this.nombre}}</td>
+						<td style="font-size: 11px; padding-left: 10px">$ {{cambio}} </td>
+					</tr>
+					{{/each}}
+				</tbody>
+			</table>
+		</div>
+	{{/each}}
+	</div>
+
+	<div class="opciones">
+
+		<div class="fila" style="position: fixed; top: 410px; left: 5%;">
+			<div class="box 1" style="background-color: {{menu}}; border: none; font-size: 13px; height: 61px;">
+				<p>
+					<i class="fa fa-pencil-square-o" style="font-size: 13px;" aria-hidden="true"></i>
+				</p>
+				<h4><a href="/editar" style="font-size: 13px;">Corregir orden</a></h4>
+			</div>
+			<div class="box 2" style="background-color: {{menu}}; border: none; font-size: 13px; height: 61px;">
+				<p>
+					<i class="fa fa-gift" style="font-size: 13px;" aria-hidden="true"></i>
+				</p>
+				<h4><a href="/promociones" style="font-size: 13px;">Promo</a></h4>
+			</div>
+		</div>
+
+		<div class="fila" style="position: fixed; top: 340px; left: 5%;">
+			<div class="box 3" style="background-color: {{menu}}; border: none; font-size: 13px; height: 61px;">
+				<p>
+					<i class="fa fa-calculator" style="font-size: 13px;" aria-hidden="true"></i>
+				</p>
+				<h4><a href="/calculadora" style="font-size: 13px;">Calculadora</a></h4>
+			</div>
+			<div class="box 4" style="background-color: {{menu}}; border: none; font-size: 13px; height: 61px;">
+				<p>
+					<i class="fa fa-paper-plane" style="font-size: 13px;" aria-hidden="true"></i>
+				</p>
+				<h4><a href="/enviar" style="font-size: 13px;">Mandar orden</a></h4>
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+{{#if currentUser}}
+
+<div class="menu" style="margin-top: 0px; background-color: {{menu}}">
+	<h2>Bienvenido {{currentUser.profile.nombre}}</h2>
+</div>
+{{else}}
+	<a href="/registro" class="saltar" style="background-color: {{menu}}">
+	Regístrate
+	</a>
+{{/if}}
+
+{{/if}}
+</template>
+
+<template name="verificacion">
+	<div class="contenedor" style="background-color: {{fondo}}; height: 100vh;">
+		<div class="container">
+			<div class="col-md-6">
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+				<br>
+					<h4 style="color: white">Te hemos enviado un código de verificación de inicio de sesión</h4>
+					<input type="number" name="codigo" class="form-control">
+					<button type="button" class="verificar btn btn-success">Verificar</button>
+					<br>
+					<br>
+					<a href="#" class="volver" style="color: white">Volver a enviar codigo</a>
+					<br>
+					<br>
+					<br>
+					<button type="button" class="btn btn-primary cancelar">Cancelar</button>
+			</div>
+		</div>
+
+
+	</div>
+</template>
+
+<template name="chat">
+
+
+	<nav class="__chat__left" id="menu">
+		<ul>
+
+			{{#each asesores}}
+			<li class="asesor">
+
+				<span style="display: block; width: 100%">
+					{{#each perfil this._id}}
+					{{#if isImage}}
+					<img src="{{this.url}}">
+					{{/if}}
+					{{/each}}
+					{{this.profile.nombre}} <span class="circle {{online}}" style="display: inline-block;
+    position: relative;
+    float: right;
+    top: 7px;"></span></span>
+			</li>
+			{{/each}}
+		</ul>
+	</nav>
+
+	<main class="chat" id="panel">
+		<div class="top" style=" background-color: {{menu}}">
+			<button class="toggle-button __chat__button ">☰</button>
+			<h2 style="font-size: 17px; text-align: center; padding-right: 65px;">
+				Atención al Cliente
+				<p style="color: white; display: block; width: 90%; margin: 0 auto; text-align: center;">{{telefono}}</p>
+			</h2>
+
+			<button class="__chat__button back"><i class="fa fa-angle-left" aria-hidden="true"></i></button>
+		</div>
+		<div class="new" style=" background-color: {{fondo}}">
+			<a href="#" class="toggle-button"><i class="fa fa-external-link" aria-hidden="true"></i> Nueva Consulta</a>
+		</div>
+
+		<ul class="list">
+		{{#each asuntos}}
+			<li class="m z">
+				{{#each perfil this.asesorId}}
+			 	{{#if isImage}}
+					<img src="{{this.url}}" class="agent azul" style="border-right-color: {{menu}}">
+				{{/if}}
+				{{/each}}
+
+				<div class="message">
+					<span class="__name__agent ">{{agente}}</span>
+					<span class="__message__content">
+
+						{{ultimoMensaje}}
+
+					</span>
+				</div>
+				<span style="position: relative; top: -30px; left: 250px; font-size: 10px;">{{hora}}</span>
+			</li>
+		{{/each}}
+
+
+		</ul>
+
+	</main>
+
+</template>
+
+<template name="NuevoMensaje">
+	<div class="__asunto" style="border-top-color: {{fondo}}">
+		<div class="top__menu">
+			<i class="fa fa-angle-left back" aria-hidden="true" style="color: {{fondo}}"></i>
+			<span class="__consulta" style="color: {{fondo}}">{{asesor}}</span>
+			{{#each perfil}}
+			 {{#if isImage}}
+			<img src="{{this.url}}" class="avatar z">
+			{{/if}}
+			{{/each}}
+		</div>
+		<div class="__content__asunto" id="sms">
+			{{#if Template.subscriptionsReady}}
+			{{#each mensajes}}
+			<div class="__messages {{mi}}" style="{{mio}}">
+			<p style="font-size: 10px;">{{hora}}</p>
+				{{this.mensaje}}
+			{{#each fotos}}
+
+    			{{#if isImage}}
+
+    				<img src="{{this.url}}" alt="{{this.metadata.creadorId}}" style="width: 80%; min-height: 100px; box-shadow: inset 0px -1px 11px -2px rgba(0,0,0,0.75); border-radius: 4px; border: 1px solid #f1f1f1; display: block;">
+
+    			{{/if}}
+
+    		{{/each}}
+			</div>
+			{{/each}}
+			{{else}}
+			<div class="loader"></div>
+			{{/if}}
+		</div>
+		<div class="input__message">
+			<input type="text" placeholder="Escribe tu consulta" class="consulta" name="mensaje" style="position: relative; top: -13px">
+
+			<label class="__send __attach__doc" style="top: 5px; color: {{fondo}}; text-align: center; padding-top: 8px">
+    			<i class="fa fa-paperclip" aria-hidden="true"></i> <input id="foto" type="file" style="display: none;">
+			</label>
+			<button class="__send __message enviar" style="position: relative; top: -13px; background-color: {{fondo}}">
+				<i class="fa fa-paper-plane" aria-hidden="true"></i>
+			</button>
+
+		</div>
+	</div>
+</template>

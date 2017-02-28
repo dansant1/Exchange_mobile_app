@@ -1,0 +1,214 @@
+<template name="ordenes">
+	<div class="container">
+		<ul class="nav nav-tabs">
+  			<li class="active"><a data-toggle="tab" href="#home">Ordenes</a></li>
+  			<li><a data-toggle="tab" href="#menu1">Correcciones <span style="display: inline-block; width: 20px; height: 20px; border-radius: 70%; background-color: red; color: white; text-align: center;">{{cantidadDeCorrecciones}}</span></a></li>
+		</ul>
+
+		<div class="tab-content">
+ 			<div id="home" class="tab-pane fade in active">
+                <h3>Ordenes</h3>
+                <p>Lista de ordenes registradas ($)</p>
+                <hr>
+                <div class="row" style="padding-top: 5px;">
+                    <div class="col-md-8">
+                        <label for="b">Buscador Inteligente</label>
+                        <input type="text" id="b" name="search" class="form-control"  placeholder="Buscar ordenes por código, clave, número de orden, remitente, beneficiario, estatus">
+                        <p>
+                            <div class="dropdown">
+                          <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown"> <i class="fa fa-filter" aria-hidden="true"></i> Compañia
+                          <span class="caret"></span></button>
+                          <ul class="dropdown-menu">
+                            <li class="filter-all"><a href="#">Todos</a></li>
+                            {{#each companias}}
+                            <li class="filter-c"><a href="#">{{this.nombre}}</a></li>
+                            {{/each}}
+                          </ul>
+                        </div>   
+                        </p>
+                    </div>
+                    <div class="col-md-2">
+                         <label for="fs">Fecha de Solicitud</label>
+                            <input type="text" placeholder="Desde" class="form-control" id="dfs">
+                            <input type="text"  placeholder="Hasta" class="form-control" id="hfs">
+                            <button class="btn btn-primary filter-fs"><i class="fa fa-calendar" aria-hidden="true"></i> Filtrar</button>
+                    </div>
+                    <div class="col-md-2">
+                        <label for="fp">Fecha de Procesado</label>
+                            <input type="text" placeholder="Desde"  class="form-control" id="dfp">
+                            <input type="text" placeholder="Hasta" class="form-control" id="hfp">
+                            <button class="btn btn-primary filter-fp"><i class="fa fa-calendar" aria-hidden="true"></i> Filtrar</button>
+                    </div>
+                    
+                    
+                </div>
+                <hr>
+    			
+    			<table class="table" style="font-size: 11px;">
+    				<thead>
+    				<tr>
+                        <th>ID</th>
+                        <!--<th>Bloquear</th> -->
+    					<th>Codigo</th>
+    					<th>Clave</th>
+    					<th>Número de Orden</th>
+                        
+                        <th>Cambiar Compañia</th>
+    					<th>Remitente</th>
+    					<!--<th>Teléfono</th> -->
+    					<th>Dirección</th>
+    					<th>Beneficiario</th>
+    					<th>País</th>
+    					<th>Banco</th>
+    					<th>Monto ($)</th>
+    					<th>Total ($)</th>
+                        <th>Correcciones</th>
+    					
+    					<th>Cambiar Estatus</th>
+                        
+    				</tr>
+    				</thead>
+    				<tbody>
+                     {{#if searching}}
+                        {{> loading}}
+                    {{else}}
+    					{{#each ordenes}}
+    					<tr>
+                            <td>
+                                {{#each fotos2 this.userId}}
+                                    <img src="{{this.url}}" class="id" style="width: 100px; height: 60px;">
+                                {{/each}}
+                            </td>
+                           <!-- <td>
+                                 
+                            </td> -->
+    						<td>#{{this.codigo}}</td>
+    						<td>
+    							<div class="form-group">
+  									<input type="text" style="width: 70px;" class="form-control" value="{{this.i1}}" name="i1{{this._id}}">
+								</div>
+    						</td>
+    						<td>
+    							<div class="form-group" style="display: flex;">
+  									<input type="text" value="{{this.i2}}" class="form-control" style="width: 70px; margin-right: 5px;" name="i2{{this._id}}">
+                                    <button style="display: inline-block; height: 35px" class="btn btn-primary confirmar">
+                                    <i class="fa fa-check-square" aria-hidden="true"></i>
+                                    </button>
+                                    <button style="display: inline-block; height: 35px; margin-left: 5px;" class="btn btn-danger bloquear">
+                                    <i class="fa fa-ban" aria-hidden="true"></i>
+                                </button>
+								</div>
+    						</td>
+
+                             
+                            <td>
+                                <select class="form-control" name="compania" id="compania" style="font-size: 11px; color: black; width: 80px;">
+                                    <option value="">--Seleccione una Compañia--</option>
+                                    {{#each companias}}
+                                    <option value="{{this._id}}">{{this.nombre}}</option>
+                                    {{/each}}
+                                </select>
+
+                                <p style="display: inline-block; margin-top: 10px; text-align: center;">{{empresa}}</p>
+                            </td>
+    						
+    						<td>
+                                <ul>
+                                    <li>{{this.remitente.nombre}}</li>
+                                    <li>{{this.remitente.telefono}}</li>
+                                </ul>
+                            </td>
+    						
+    						<td>{{this.remitente.direccion}}</td>				
+    						<td>
+                            <ul>
+                                <li>{{this.beneficiario.nombre}} {{this.beneficiario.ap}} {{this.beneficiario.am}}</li>
+                                <li>+{{this.beneficiario.telefono}}</li>
+                            </ul>
+    						</td>
+    						<td>{{pais}}</td>
+    						<td>{{banco}}</td>
+    						<td>{{this.monto}}</td>
+    						<td>{{this.total}}</td>
+                            <td style="color: {{red}}; text-align: center;">{{correccion}}</td>
+    						
+    						<td>
+    							<select class="form-control" name="estatus" id="estatus" style="font-size: 11px; color: black; width: 80px;">
+    								<option value="pendiente">Pendiente</option>
+    								<option value="procesado">Procesado</option>
+    								<option value="anulado">Anulado</option>
+    							</select>
+
+                                <p style="display: inline-block; margin-top: 10px; text-align: center;">{{this.estatus}}</p>
+    						</td>
+                           
+    					</tr>
+                        
+                        {{else}}
+                             <p class="alert alert-warning">No se encotro resultados para {{query}}. Intentelo de nuevo.</p>
+    					{{/each}}
+                    {{/if}}
+    				</tbody>
+    			</table>
+  			</div>
+  			<div id="menu1" class="tab-pane fade">
+    			<h3>Correcciones de ordenes</h3>
+    			<p>Lista de correcciones de ordenes.</p>
+                <hr>
+    			<table class="table">
+    				<thead>
+    					<th>Codigo</th>
+    					<th>Remitente (nuevo)</th>
+    					<th>Compañia</th>
+    					<th>Problema</th>
+    					<th>Corregido</th>
+    				</thead>
+    				<tbody>
+    					{{#each correcciones}}
+    					<tr>
+    						<td>{{this.orden.codigo}}</td>
+    						<td>{{this.remitente}}</td>
+    						<td>{{empresae}}</td>
+    						<td>{{this.problema}}</td>	
+    						<td><button type="button" class="btn btn-primary corregir">Corregido</button></td>			
+    					</tr>
+    					{{/each}}
+    				</tbody>
+    			</table>
+  			</div>
+  
+		</div>
+	</div>
+</template>
+
+<template name="loading">
+    <h2>Cargando resultados...</h2>
+</template>
+
+<template name="zoom">
+    
+    <div class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h4 class="modal-title">ID</h4>
+                </div>
+
+                <div class="modal-body">
+                    <p>
+                        {{#each foto}}
+                        <img src="{{this.url}}" style="width: 400px; height: 400px;">
+                        {{/each}}
+                    </p>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</template>

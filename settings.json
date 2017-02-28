@@ -1,0 +1,11 @@
+{
+	"galaxy.meteor.com":
+		{
+			"env":
+				{
+        	"ROOT_URL": "http://app.aecheckcash.com",
+					"MONGO_URL": "mongodb://admin:admin@ds151048.mlab.com:51048/exchange"
+				}
+		}
+
+}
