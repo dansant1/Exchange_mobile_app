@@ -7,5 +7,18 @@
 					"MONGO_URL": "mongodb://admin:admin@ds151048.mlab.com:51048/exchange"
 				}
 		}
+	,
+		"public" : {
+    "pushwoosh" : {
+      "appId": "37664-58752",
+      "google": {
+        "project_number": "123456"
+      }
+    }
+  },
+  "pushwoosh": {
+    "appId": "37664-58752",
+    "token": "sample_pushwoosh_token"
+  }
 
 }
