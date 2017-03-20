@@ -168,12 +168,16 @@ Template.Home.onCreated(function () {
 		self.subscribe('locales');
 		self.subscribe('cambios2');
 		self.subscribe('colores');
+    self.subscribe('banderas');
 		self.subscribe('Landing');
 	});
 });
 
 
 Template.Home.helpers({
+  bandera() {
+    return Banderas.find({'metadata.paisId': this._id})
+  },
 	locales: function () {
 		return Locales.find();
 	},

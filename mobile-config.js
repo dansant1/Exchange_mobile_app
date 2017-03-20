@@ -5,7 +5,7 @@ App.info({
   description: 'Casa de cambio',
   author: 'Grupo DDV SAC',
   email: 'danieldelgadilloh@gmail.com',
-  version: '1.0.3',
+  version: '1.0.7',
 });
 
 App.setPreference('Orientation', 'portrait');
@@ -13,6 +13,8 @@ App.setPreference('Orientation', 'portrait');
 App.configurePlugin('phonegap-plugin-push', {
   SENDER_ID: 246059673095
 });
+
+App.accessRule('*');
 
 App.icons({
   'android_mdpi': 'public/res/mipmap-mdpi/ic_launcher.png',

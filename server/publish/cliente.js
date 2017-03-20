@@ -54,7 +54,7 @@ Meteor.publish('administradores', function () {
 Meteor.publish('Landing', function () {
 	console.log('hola3');
 	return Landing.find({});
-	
+
 });
 
 
@@ -75,7 +75,7 @@ Meteor.publish('asesores', function () {
 });
 
 Meteor.publish( 'chat', function( de ) {
-  
+
   if (this.userId) {
 		return Mensajes.find({
       		$or: [ { cliente: this.userId, asesor: de }, { cliente: de, asesor: this.userId } ]
@@ -181,8 +181,16 @@ Meteor.publish('mensajes', function () {
 
 Meteor.publish('ultimos', function () {
 	if (this.userId) {
-		//console.log('hello');
 		return Ultimo.find();
+	} else {
+		this.stop();
+		return;
+	}
+});
+
+Meteor.publish('banderas', function () {
+	if (this.userId) {
+		return Banderas.find();
 	} else {
 		this.stop();
 		return;

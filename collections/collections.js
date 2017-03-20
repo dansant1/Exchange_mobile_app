@@ -137,3 +137,29 @@ Landing.allow({
     return true;
   }
 });
+
+let docStore13 = new FS.Store.GridFS("banderas", {
+  maxTries: 3
+});
+
+
+// Creamos la DB para Documentos
+Banderas = new FS.Collection("banderas", {
+  stores: [docStore13]
+});
+
+// agregamos los permisos allow/deny
+Banderas.allow({
+  insert: function () {
+    return true;
+  },
+  update: function () {
+    return true;
+  },
+  remove: function () {
+    return true;
+  },
+  download: function () {
+    return true;
+  }
+});

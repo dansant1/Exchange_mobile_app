@@ -128,7 +128,7 @@ function SubirPerfil (event, template) {
             doc.metadata = {
               asesorId: Meteor.userId(),
             };
-           
+
             console.log('llego');
 
             if (FotosVendedor.find({'metadata.asesorId': Meteor.userId()}).fetch().length > 0) {
@@ -140,7 +140,7 @@ function SubirPerfil (event, template) {
                     console.log('Listo!');
                     alert('Foto de perfil subida');
                   }
-                });  
+                });
             } else {
               FotosVendedor.insert(doc, function (err, fileObj) {
                 if (err) {
@@ -177,7 +177,7 @@ function SubirLanding (event, template) {
             var nuevoNombre = removeDiacritics(doc.name());
             doc.name(nuevoNombre);
 
-           
+
             console.log('llego');
 
             if (Landing.find().fetch().length > 0) {
@@ -189,13 +189,65 @@ function SubirLanding (event, template) {
                     console.log('Listo!');
                     alert('Imagen subida');
                   }
-                });  
+                });
             } else {
               Landing.insert(doc, function (err, fileObj) {
                 if (err) {
                   alert('Hubo un problema', 'warning');
                 } else {
                   alert('Imagen subida');
+                }
+              });
+            }
+          }
+        }
+    }
+}
+
+function SubirBandera (event, template, id, paisId) {
+
+    let archivo = document.getElementById(id);
+    console.log(archivo);
+    if ('files' in archivo) {
+
+        if (archivo.files.length == 0) {
+           alert('Selecciona un archivo, vuelve a intentarlo', 'warning');
+        } else if (archivo.files.length > 1) {
+           alert('Selecciona solo un archivo, vuelve a intentarlo', 'warning');
+        } else {
+
+
+          for (var i = 0; i < archivo.files.length; i++) {
+
+            var filei = archivo.files[i];
+
+            var doc = new FS.File(filei);
+
+            var nuevoNombre = removeDiacritics(doc.name());
+            doc.name(nuevoNombre);
+
+            doc.metadata = {
+              paisId: paisId,
+            };
+
+            console.log('llego');
+
+            if (Banderas.find({'metadata.paisId': paisId}).fetch().length > 0) {
+                Banderas.remove({_id: Banderas.find({'metadata.paisId': paisId}).fetch()[0]._id});
+                Banderas.insert(doc, function (err, fileObj) {
+                  if (err) {
+                    alert('Hubo un problema', 'warning');
+                  } else {
+                    console.log('Listo!');
+                    alert('Foto de Bandera subida');
+                  }
+                });
+            } else {
+              Banderas.insert(doc, function (err, fileObj) {
+                if (err) {
+                  alert('Hubo un problema', 'warning');
+                } else {
+                  alert('Bandera subida');
                 }
               });
             }
@@ -244,7 +296,7 @@ Template.disenio.onRendered(function () {
             	}
             });
         });
-    
+
 });
 
 
@@ -298,6 +350,7 @@ Template.adminHome.onCreated(function () {
 	self.autorun(function () {
 		self.subscribe('paises');
 		self.subscribe('bancos2');
+    self.subscribe('banderas')
 		self.subscribe('tarifas');
 		self.subscribe('cambios2');
 		self.subscribe('locales');
@@ -313,7 +366,14 @@ Template.adminHome.onCreated(function () {
 });
 
 Template.adminHome.helpers({
-	paises: function () {
+  checked() {
+    if (this.destacado === true) {
+      return 'checked'
+    } else {
+      return ''
+    }
+  },
+  paises: function () {
 		return Paises.find();
 	},
 	administradores: function () {
@@ -332,7 +392,7 @@ Template.adminHome.helpers({
 		let b = Session.get('bank');
 
 		if (b !== "") {
-			return Bancos.find({paisId: b });	
+			return Bancos.find({paisId: b });
 		} else {
 			return;
 		}
@@ -341,7 +401,7 @@ Template.adminHome.helpers({
 		let b = Session.get('banke');
 
 		if (b !== "") {
-			return Bancos.find({paisId: b });	
+			return Bancos.find({paisId: b });
 		} else {
 			return;
 		}
@@ -395,6 +455,18 @@ Template.adminHome.helpers({
 });
 
 Template.adminHome.events({
+  'change .bandera'(e, t) {
+    SubirBandera(e, t, 'b' + this._id, this._id)
+  },
+  'change [name="destacar"]'(e, t) {
+    Meteor.call('destacarBanco', this._id, e.target.checked, (err) => {
+      if (err) {
+        alert(err)
+      } else {
+        alert('Banco Destacado')
+      }
+    })
+  },
 	'click .at': function (e, t) {
 		let telefono = t.find("[name='telf']").value;
 		console.log(telefono);
@@ -463,11 +535,11 @@ Template.adminHome.events({
 		});
 	},
 	'click .aa': function (e, t) {
-		
+
 		let datos = {
 			nombre: t.find("[name='anombre']").value,
 			email: t.find("[name='aemail']").value,
-			password: t.find("[name='apassword']").value 
+			password: t.find("[name='apassword']").value
 		}
 
 		if (datos.nombre !== "" && datos.email !== "" && datos.password !== "") {
@@ -489,7 +561,7 @@ Template.adminHome.events({
 		e.preventDefault();
 
 		let nombre = t.find("[name='nombreac']").value;
-		
+
 		if (nombre !== "") {
 			Meteor.call('agregarCompania', nombre, function (err) {
 				if (err) {
@@ -515,7 +587,7 @@ Template.adminHome.events({
 				} else {
 					alert('Acutalizaste el nombre de la compañia');
 				}
-			});	
+			});
 		} else {
 			alert('Ingresa un nombre válido');
 		}
@@ -546,7 +618,7 @@ Template.adminHome.events({
 		} else {
 			alert('Completa los datos');
 		}
-		
+
 	},
 	'click .b': function (e, t) {
 		let banco =	t.find("[name='banco']").value;
@@ -579,12 +651,12 @@ Template.adminHome.events({
 				} else {
 					alert('Acutalizaste el nombre del banco');
 				}
-			});	
+			});
 		} else {
 			alert('Ingresa un nombre valido');
 		}
 
-		
+
 	},
 	'click .update-pais': function (e, t) {
 		let nombre = t.find("[name=p" + this._id + "]").value;
@@ -598,7 +670,7 @@ Template.adminHome.events({
 				} else {
 					alert('Acutalizaste el nombre del país');
 				}
-			});	
+			});
 		} else {
 			alert('Ingresa un nombre valido');
 		}
@@ -615,7 +687,7 @@ Template.adminHome.events({
 				} else {
 					alert('Acutalizaste el valor de cambio');
 				}
-			});	
+			});
 		} else {
 			alert('Ingresa un número valido');
 		}
@@ -631,24 +703,24 @@ Template.adminHome.events({
 		Session.set('banke', bank);
 	},
 	'click .r': function (e, t) {
-		$('.rangos').append('<div class="rang"> <input style="display: inline-block; width: 150px;" type="number" placeholder="Desde" class="form-control" id="desde" name="desde"> <input type="number" style="display: inline-block; width: 150px;" placeholder="Hasta" class="form-control" id="hasta" name="hasta"> <input type="number" style="display: inline-block; width: 150px;" class="form-control" id="tarifa" name="tarifa" placeholder="Cargo"> </div>');  
+		$('.rangos').append('<div class="rang"> <input style="display: inline-block; width: 150px;" type="number" placeholder="Desde" class="form-control" id="desde" name="desde"> <input type="number" style="display: inline-block; width: 150px;" placeholder="Hasta" class="form-control" id="hasta" name="hasta"> <input type="number" style="display: inline-block; width: 150px;" class="form-control" id="tarifa" name="tarifa" placeholder="Cargo"> </div>');
 	},
 	'click .r2': function (e, t) {
-		$('.rangos2').append('<div class="rang2"> <input style="display: inline-block; width: 150px;" type="number" placeholder="Desde" class="form-control" id="desde" name="desde"> <input type="number" style="display: inline-block; width: 150px;" placeholder="Hasta" class="form-control" id="hasta" name="hasta"> <input type="number" style="display: inline-block; width: 150px;" class="form-control" id="tarifa" name="tarifa" placeholder="Cargo"> </div>');  
+		$('.rangos2').append('<div class="rang2"> <input style="display: inline-block; width: 150px;" type="number" placeholder="Desde" class="form-control" id="desde" name="desde"> <input type="number" style="display: inline-block; width: 150px;" placeholder="Hasta" class="form-control" id="hasta" name="hasta"> <input type="number" style="display: inline-block; width: 150px;" class="form-control" id="tarifa" name="tarifa" placeholder="Cargo"> </div>');
 	},
 	'click .l': function (e, t) {
-		$('.locals1').append('<div class="locals"> <input style="display: inline-block; width: 150px;" type="text" placeholder="Local" class="form-control" id="local" name="local">  </div>');  
+		$('.locals1').append('<div class="locals"> <input style="display: inline-block; width: 150px;" type="text" placeholder="Local" class="form-control" id="local" name="local">  </div>');
 	},
 	'click .gl': function () {
 		let datos = [];
 
-    	$('.locals').each(function(){  		
+    	$('.locals').each(function(){
     		var local = $(this).find("#local").val();
 			if (local !== "") {
 				Meteor.call('agregarLocal', local, function (err) {
 					if (err) {
 						alert(err);
-					} 
+					}
 				});
 			} else {
 				alert('Ingrese los datos correctamente');
@@ -656,7 +728,7 @@ Template.adminHome.events({
 		});
 
     	location.reload();
-		
+
 	},
 	'click .c': function (e, t) {
 		let datos = {
@@ -688,7 +760,7 @@ Template.adminHome.events({
 		let datos = [];
 
 
-    	$('.rang').each(function(){  		
+    	$('.rang').each(function(){
     		var desde = $(this).find("#desde").val();
     		var hasta = $(this).find("#hasta").val();
     		var tarifa = $(this).find("#tarifa").val();
@@ -699,7 +771,7 @@ Template.adminHome.events({
 			    tarifa: parseFloat(tarifa)
     		});
 		});
-		
+
 		main.banco.rangos = datos;
 		console.log(main);
 		if (main.banco.datos !== [] && main.paisId !== "" && main.banco.id !== "") {
@@ -711,9 +783,9 @@ Template.adminHome.events({
 					if (result) {
 						alert(result);
 					} else {
-						alert('Tarifas Agregadas');	
+						alert('Tarifas Agregadas');
 					}
-					
+
 				}
 			});
 		} else {
@@ -799,14 +871,14 @@ Template.TarifasAdmin.events({
 		e.preventDefault();
 
 		let pais = t.find("[name='pais']").value;
-		
+
 		if (pais !== "") {
 			Meteor.call('agregarPais', pais, function (err) {
 				if (err) {
 					console.log(err);
 				} else {
-					t.find("[name='pais']").value = "";	
-					alert('Agregaste un país');	
+					t.find("[name='pais']").value = "";
+					alert('Agregaste un país');
 				}
 			});
 		}
@@ -822,7 +894,7 @@ Template.TarifasAdmin.events({
 					console.log(err);
 				} else {
 					t.find("[name='banco']").value = "";
-					alert('Agregaste un banco');				
+					alert('Agregaste un banco');
 				}
 			});
 		}
@@ -853,7 +925,7 @@ Template.TarifasAdmin.events({
 			t.find("[name=" + r._id + "]").value = ""
 		});
 
-		
+
 
 		if (datos.pais !== "" && datos.banco !== "" && datos.cargo !== "") {
 			Meteor.call('agregarTarifa', datos, function (err) {
@@ -893,7 +965,7 @@ Template.TarifasAdmin.events({
 			bancoId: $( "#banco2" ).val(),
 			cambio: t.find("[name='cambio']").value
 		}
-		
+
 		if (datos.cambio !== "") {
 			Meteor.call('agregarCambio', datos, function (err) {
 				if (err) {
@@ -930,7 +1002,7 @@ Template.AdminAsesor.helpers({
 		return Asuntos.find({}, {sort: {createdAt: -1}});
 	},
 	perfil: function (userId) {
-		
+
 		return Fotos.find({'metadata.userId': userId});
 	},
 	cliente: function () {
@@ -948,10 +1020,10 @@ Template.AdminAsesor.helpers({
         let ultimo = Mensajes.find({
       		$or: [ { cliente: this.clienteId, asesor: this.asesorId }, { cliente: this.asesorId, asesor: this.clienteId } ]
     	}).fetch().length - 1;
-		
+
 		console.log(ultimo);
 
-		
+
 		let d = Mensajes.find({
       		$or: [ { cliente: this.clienteId, asesor: this.asesorId }, { cliente: this.asesorId, asesor: this.clienteId } ]
     	}).fetch()[ultimo].createdAt;
@@ -969,14 +1041,14 @@ Template.AdminAsesor.helpers({
 		let ultimo = Mensajes.find({
       		$or: [ { cliente: this.clienteId, asesor: this.asesorId }, { cliente: this.asesorId, asesor: this.clienteId } ]
     	}).fetch().length - 1;
-		
+
 		console.log(ultimo);
 
-		
+
 		return Mensajes.find({
       		$or: [ { cliente: this.clienteId, asesor: this.asesorId }, { cliente: this.asesorId, asesor: this.clienteId } ]
     	}).fetch()[ultimo].mensaje;
-		
+
 	}
 });
 
@@ -998,7 +1070,7 @@ Template.AdminAsesor.events({
 				if (err) {
 					alert(err);
 				} else {
-					
+
 						Meteor.call('online', function (err) {
 							if (err) {
 								console.log(err);
@@ -1006,9 +1078,9 @@ Template.AdminAsesor.events({
 								location.reload();
 								console.log('conectado');
 							}
-						});	
-					
-						
+						});
+
+
 				}
 			});
 		} else {
@@ -1016,12 +1088,12 @@ Template.AdminAsesor.events({
 		}
 	},
 	'click .logout': function () {
-		
+
 		Meteor.call('offline', function (err) {
 			if (err) {
 				console.log(err);
 			} else {
-				Meteor.logout();		
+				Meteor.logout();
 			}
 		});
 	},

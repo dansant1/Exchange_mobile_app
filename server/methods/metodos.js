@@ -16,6 +16,13 @@ Meteor.methods({
 			bancos: []
 		});
 	},
+	destacarBanco(id, destacado) {
+		Bancos.update({_id: id}, {
+			$set: {
+				destacado: destacado
+			}
+		})
+	},
 	agregarBanco: function (nombre, paisId) {
 		Bancos.insert({
 			nombre: nombre,
