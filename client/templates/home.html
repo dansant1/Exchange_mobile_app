@@ -150,12 +150,21 @@
 	<h2 class="titulo" style="background-color: {{menu}}">Tarifas</h2>
 
 	<div class="tarifas" style="width: 90%;
-	height: 105px;
+	height: 130px;
+	margin-top: 12px;
 	overflow-x: scroll;
 	-webkit-overflow-scrolling: touch;
-	padding-top: 4px;
-	white-space: nowrap; display: block">
+	padding-top: 25px;
+	white-space: nowrap;
+	display: block;">
 	{{#each paises}}
+	{{#each bandera}}
+	<img src="{{this.url}}" alt="{{this.url}}" style="width: 32px;
+	height: 32px;
+	top: -98px;
+	left: 35px;
+	position: relative;">
+	{{/each}}
 		<div class="col" style="height: 90px; background-color: {{menu}}; min-width: 100px; max-width: 230px; margin: 1.5px; overflow-x: hidden;
 		overflow-y: scroll;
 		white-space: nowrap;">

@@ -10,10 +10,7 @@
 	,
 		"public" : {
     "pushwoosh" : {
-      "appId": "37664-58752",
-      "google": {
-        "project_number": "123456"
-      }
+      "appId": "37664-58752"
     }
   },
   "pushwoosh": {

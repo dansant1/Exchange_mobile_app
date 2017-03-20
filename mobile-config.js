@@ -5,7 +5,7 @@ App.info({
   description: 'Casa de cambio',
   author: 'Grupo DDV SAC',
   email: 'danieldelgadilloh@gmail.com',
-  version: '1.0.7',
+  version: '1.0.8',
 });
 
 App.setPreference('Orientation', 'portrait');
