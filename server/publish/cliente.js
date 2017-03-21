@@ -189,10 +189,7 @@ Meteor.publish('ultimos', function () {
 });
 
 Meteor.publish('banderas', function () {
-	if (this.userId) {
+	
 		return Banderas.find();
-	} else {
-		this.stop();
-		return;
-	}
+
 });

@@ -1,11 +1,11 @@
 // the entire section is optional.
 App.info({
-  id: 'com.industec.nombre.aecheck',
+  id: 'com.grupoddv.daniel.exchange',
   name: 'A&E Envíos',
   description: 'Casa de cambio',
   author: 'Grupo DDV SAC',
   email: 'danieldelgadilloh@gmail.com',
-  version: '1.0.8',
+  version: '1.0.9',
 });
 
 App.setPreference('Orientation', 'portrait');
@@ -13,6 +13,8 @@ App.setPreference('Orientation', 'portrait');
 App.configurePlugin('phonegap-plugin-push', {
   SENDER_ID: 246059673095
 });
+
+
 
 App.accessRule('*');
 

@@ -1,5 +1,6 @@
 if(Meteor.isCordova){
     Meteor.startup(function(){
+
         document.addEventListener("backbutton", function () {
         	if (document.location.pathname === "/" || document.location.pathname === "/home") {
 
@@ -20,11 +21,11 @@ if(Meteor.isCordova){
                 vibrate: true,
                 clearNotifications: true
             },
-            /*ios: {
+            ios: {
               alert: true,
               badge: true,
               sound: true
-            }*/
+            }
         });
     });
 }

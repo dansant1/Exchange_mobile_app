@@ -71,6 +71,16 @@ Meteor.methods({
 
 
 	},
+	sendPush() {
+		console.log('Si');
+		Push.send({
+					from: 'A&E Envíos',
+					title: 'Actualización del Tipo de Cambio',
+					text: `A&E Envíos: Se actualizó el tipo de cambio`,
+					badge: 1,
+					query: {}
+			});
+	},
 	agregarAdministrador: function (datos) {
 
   		var id;
