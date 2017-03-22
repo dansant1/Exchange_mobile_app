@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 
-Meteor.startup(() => {
 
+Meteor.startup(() => {
 
   Push.Configure({
     apn: {

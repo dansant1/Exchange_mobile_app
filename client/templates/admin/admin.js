@@ -455,6 +455,15 @@ Template.adminHome.helpers({
 });
 
 Template.adminHome.events({
+  'click .push'() {
+    Meteor.call('sendPush', (err) => {
+      if (err) {
+        console.log(err)
+      } else {
+        alert('Notifiacion enviada')
+      }
+    })
+  },
   'change .bandera'(e, t) {
     SubirBandera(e, t, 'b' + this._id, this._id)
   },

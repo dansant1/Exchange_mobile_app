@@ -58,15 +58,15 @@ Meteor.methods({
 		let pais = Paises.findOne({_id: Cambios.findOne({_id: cambioId}).paisId }).nombre;
 
 		if (banco && pais) {
-			Push.send({
-        		from: 'A&E Envíos',
-        		title: 'Actualización del Tipo de Cambio',
-       	 		text: `A&E Envíos: Se actualizó el tipo de cambio del banco ${banco} de ${pais} al valor de ${cambio}`,
-        		badge: 1,
-						query: {
-
-        		}
-    		});
+			// Push.send({
+      //   		from: 'A&E Envíos',
+      //   		title: 'Actualización del Tipo de Cambio',
+      //  	 		text: `A&E Envíos: Se actualizó el tipo de cambio del banco ${banco} de ${pais} al valor de ${cambio}`,
+      //   		badge: 1,
+			// 			query: {
+			//
+      //   		}
+    	// 	});
 		}
 
 
@@ -76,7 +76,7 @@ Meteor.methods({
 		Push.send({
 					from: 'A&E Envíos',
 					title: 'Actualización del Tipo de Cambio',
-					text: `A&E Envíos: Se actualizó el tipo de cambio`,
+					text: `A&E Envíos actualizó el tipo de cambio`,
 					badge: 1,
 					query: {}
 			});
