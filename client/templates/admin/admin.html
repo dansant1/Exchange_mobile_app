@@ -260,6 +260,7 @@
                 <tr>
                   <th>País</th>
 									<th>Subir Bandera</th>
+									<th>N. Orden</th>
                   <th>Eliminar</th>
                 </tr>
               </thead>
@@ -278,6 +279,9 @@
 											<label class="btn btn-default btn-file">
     											Subir Bandera <input type="file" class="bandera" id="b{{this._id}}" style="display: none;">
 											</label>
+										</td>
+										<td>
+											<input type="number" name="orden" min="0" class="form-control sort i{{this._id}}">
 										</td>
                     <td>
                       <button class="btn btn-default ep">Eliminar</button>

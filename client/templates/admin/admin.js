@@ -455,6 +455,23 @@ Template.adminHome.helpers({
 });
 
 Template.adminHome.events({
+  'change .sort'(e, t) {
+    let orden = $(".i" + this._id).val()
+
+    console.log(orden);
+    if (orden >= 0) {
+
+      Meteor.call('ordenarPais', orden, this._id, (err) => {
+        if (err) {
+          alert(err)
+        } else {
+          alert('orden cambiado')
+        }
+      })
+    } else {
+      alert('Ingrese un numero valido')
+    }
+  },
   'click .push'() {
     Meteor.call('sendPush', (err) => {
       if (err) {

@@ -9,6 +9,14 @@ Meteor.methods({
 		}
 
 	},
+	ordenarPais(orden, paisId) {
+		orden = parseInt(orden)
+		Paises.update({_id: paisId}, {
+			$set: {
+				orden: orden
+			}
+		})
+	},
 	agregarPais: function (nombre) {
 		Paises.insert({
 			nombre: nombre,

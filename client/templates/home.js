@@ -220,7 +220,7 @@ Template.body.events({
 
 Template.Home.helpers({
 	paises: function () {
-		return Paises.find();
+		return Paises.find({}, {sort: {orden: 1}});
 	},
 	bancos: function (paisId) {
 		return Bancos.find({paisId: paisId});
