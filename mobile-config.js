@@ -1,11 +1,11 @@
 // the entire section is optional.
 App.info({
-  id: 'com.grupoddv.daniel.exchange',
+  id: 'com.industec.nombre.aecheck',
   name: 'A&E Envíos',
   description: 'Casa de cambio',
   author: 'Grupo DDV SAC',
   email: 'danieldelgadilloh@gmail.com',
-  version: '1.0.9',
+  version: '1.0.10',
 });
 
 App.setPreference('Orientation', 'portrait');
