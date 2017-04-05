@@ -17,6 +17,14 @@ Meteor.methods({
 			}
 		})
 	},
+	ordenarBanco(orden, _id) {
+		orden = parseInt(orden)
+		Bancos.update({_id}, {
+			$set: {
+				orden: orden
+			}
+		})
+	},
 	agregarPais: function (nombre) {
 		Paises.insert({
 			nombre: nombre,

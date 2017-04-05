@@ -223,7 +223,7 @@ Template.Home.helpers({
 		return Paises.find({}, {sort: {orden: 1}});
 	},
 	bancos: function (paisId) {
-		return Bancos.find({paisId: paisId});
+		return Bancos.find({ paisId }, { sort: { orden: 1} });
 	},
 	tarifas: function () {
 		return Tarifas.find();

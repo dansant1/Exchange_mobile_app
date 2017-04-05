@@ -321,6 +321,7 @@
                 <tr>
                   <th>Banco</th>
                   <th>País</th>
+									<th>N. Orden</th>
 									<th>Destacar</th>
                   <th>Eliminar</th>
                 </tr>
@@ -340,6 +341,9 @@
                       {{pais this.paisId}}
 
                     </td>
+										<td>
+											<input type="number" name="ordenbanco" value="{{this.orden}}" min="0" class="form-control sort2 bi{{this._id}}">
+										</td>
 										<td style="text-align: center">
 											<input type="checkbox" name="destacar" {{checked}}>
 										</td>

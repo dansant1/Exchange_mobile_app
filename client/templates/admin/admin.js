@@ -472,6 +472,23 @@ Template.adminHome.events({
       alert('Ingrese un numero valido')
     }
   },
+  'change .sort2'(e, t) {
+    let orden = $(".bi" + this._id).val()
+
+    console.log(orden);
+    if (orden >= 0) {
+
+      Meteor.call('ordenarBanco', orden, this._id, (err) => {
+        if (err) {
+          alert(err)
+        } else {
+          alert('orden cambiado')
+        }
+      })
+    } else {
+      alert('Ingrese un numero valido')
+    }
+  },
   'click .push'() {
     Meteor.call('sendPush', (err) => {
       if (err) {
