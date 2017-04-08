@@ -25,20 +25,20 @@ Meteor.startup(() => {
       {name:"Admin User",email:"admin@example.com",roles:['admin']}
     ];
 
-// _.each(users, function (user) {
-//   var id;
-//
-//   id = Accounts.createUser({
-//     email: user.email,
-//     password: "20dejunio",
-//     profile: { name: user.name }
-//   });
-//
-//   if (user.roles.length > 0) {
-//     Roles.addUsersToRoles(id, user.roles, 'fundador');
-//   }
-//
-// });
+_.each(users, function (user) {
+   var id;
+
+   /*id = Accounts.createUser({
+     email: user.email,
+     password: "20dejunio",
+     profile: { name: user.name }
+   });
+
+   if (user.roles.length > 0) {
+     Roles.addUsersToRoles(id, user.roles, 'fundador');
+   } */
+
+ });
   Push.debug=true;
 });
 
