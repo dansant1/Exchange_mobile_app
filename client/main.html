@@ -1,0 +1,591 @@
+<head>
+  <title>tinajasapp</title>
+</head>
+
+<template name="inicio">
+  
+  <img src="/t.jpg" class="t">
+  <img src="/logo.png" class="logo">
+
+  <a href="/login" class="boton" style="border-bottom: 1px solid black"><i class="fa fa-sign-in" aria-hidden="true"></i> INICIA SESION</a>
+  <a href="/signup" class="boton"  style="border-bottom: 1px solid black"><i class="fa fa-user-plus" aria-hidden="true"></i> REGISTRATE</a>
+  <a href="/carta" class="boton carta">LA CARTA</a>
+
+</template>
+
+<template name="login">
+  <div class="menu">
+    <a href="/"><i class="fa fa-reply" aria-hidden="true"></i></a>
+    <h3>INICIAR SESION</h3>
+  </div>
+  <div class="details">
+    <br>
+    <input type="text" name="email" placeholder="EMAIL">
+    <input type="password" name="password" placeholder="CONTRASEÑA">
+    <br>
+    <button class="boton_entrar">ENTRAR</button>
+    <a href="#" class="texto">¿Olvidaste tu contraseña?</a>
+    <a href="#" class="texto" style="font-size: 35px;">ó</a>
+    <br><br>
+     <button class="boton_entrar" style="background: #3b5998;">CONECTATE CON FACEBOOK</button>
+  </div>
+</template>
+
+<template name="signup">
+  <div class="menu">
+    <a href="/"><i class="fa fa-reply" aria-hidden="true"></i></a>
+    <h3>REGISTRATE</h3>
+  </div>
+  <div class="details">
+    
+    <input type="text" style="height: 50px;" name="nombre" placeholder="NOMBRE Y APELLIDO">
+    <input type="text" style="height: 50px;" name="nacimiento" placeholder="FECHA DE NACIMIENTO">
+    <input type="number" style="height: 50px;" name="telefono" placeholder="NUMERO DE TELEFONICO (EJ. 987234176)">
+    <input type="email" style="height: 50px;" name="email" placeholder="EMAIL">
+    <input type="password" style="height: 50px;" name="password" placeholder="CONTRASEÑA">
+    <br>
+    <button style="height: 50px;" class="boton_entrar">REGISTRAR</button>
+    
+    <a href="#" class="texto" style="font-size: 35px;">ó</a>
+   
+     <button class="boton_entrar" style="position: relative; background: #3b5998; height: 30px; width: 70%; font-size: 13px; margin: 5px auto; left: 15%; top: 35px; border-radius: 3px;">CONECTATE CON FACEBOOK</button>
+  </div>
+</template>
+
+<template name="home">
+  <div class="menu" style="background: #141414; border-color: #141414;">
+    <a href="#" class="open"><i class="fa fa-bars" aria-hidden="true"></i></a>
+    <h3><img src="/logo.png" style="width: 165px; height: 35px;"></h3>
+    <span class="user"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span>
+  </div>
+
+  <div class="menu-lateral">
+    <ul class="menu-list">
+      <li> <i class="fa fa-home" aria-hidden="true"></i> INICIO</li>
+      <li><i class="fa fa-user" aria-hidden="true"></i> PERFIL</li>
+      <li class="carta2"><i class="fa fa-envelope-o" aria-hidden="true"></i> CARTA</li>
+      <li><i class="fa fa-map-marker" aria-hidden="true"></i> UBICANOS</li>
+      <li class="logout"><i class="fa fa-sign-out" aria-hidden="true"></i> SALIR</li>
+    </ul>
+  </div>
+
+  <div class="details">
+    <br>
+    <h2 class="presentacion">¡Hola {{currentUser.profile.nombre}}!</h2> 
+    <p class="presentacion">¿Que se te antoja hoy?</p>
+    <br>
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+      <li data-target="#myCarousel" data-slide-to="1"></li>
+      <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+      <div class="item active">
+        <img src="slide1.png" alt="Los Angeles" style="width:100%;">
+      </div>
+
+      <div class="item">
+        <img src="slide2.png" alt="Chicago" style="width:100%;">
+      </div>
+    
+      <div class="item">
+        <img src="slide3.png" alt="New york" style="width:100%;">
+      </div>
+    </div>
+
+    <!-- Left and right controls -->
+    <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+  
+   <p class="presentacion">La Carta</p>
+   
+   <div class="container-fluid">
+     <div class="fila">
+       <div class=" car" style="width: 60%">
+        <img src="/1.jpg">
+        <p class="centered"  name="e1">Nuestra Especialidad</p>
+       </div>
+       <div class=" car" style="width: 40%">
+        <img src="/13.jpg">
+         <p class="centered"  name="e2">Parrillas</p>
+       </div>
+     </div>
+
+     <div class="fila">
+       <div class="car">
+        <img src="/3.jpeg">
+         <p class="centered" style="top: -50px; left: 14%;" name="e3">Extras</p>
+       </div>
+       <div class=" car">
+        <img src="/14.jpg">
+         <p class="centered" style="left: 17%; top: -50px" name="e4">Bebidas</p>
+       </div>
+     </div>
+
+
+   </div>
+   <br>
+    <button name="pedido" class="boton_entrar" style="background: #b62931;"><i class="fa fa-paper-plane" aria-hidden="true"></i> HAZ TU PEDIDO</button>
+  </div>
+</template>
+
+<template name="descripcion_menu">
+  <div class="menu">
+    <a href="/home"><i class="fa fa-reply" aria-hidden="true"></i></a>
+    <h3>ESPECIALIDAD</h3>
+  </div>
+  <div class="details">
+    <div class="container-fluid">
+      <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/1.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Pollo a la Brasa</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+Ensalada mixta</p>
+        </div>
+      </div>
+
+      <div class="row" style="margin-left: 0px;">
+       
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>1/2 Pollo a la Brasa</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+Ensalada mixta</p>
+        </div>
+         <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/3.jpeg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+      </div>
+
+      <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/4.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>1/4 Pollo a la Brasa</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+Ensalada mixta</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="descripcion_menu2">
+  <div class="menu">
+    <a href="/home"><i class="fa fa-reply" aria-hidden="true"></i></a>
+    <h3>PARRILLAS</h3>
+  </div>
+  <div class="details">
+    <div class="container-fluid">
+      <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/8.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Mollejitas</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+Ensalada mixta</p>
+        </div>
+      </div>
+
+      <div class="row" style="margin-left: 0px;">
+       
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Anticuchos</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+Ensalada mixta</p>
+        </div>
+         <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/9.jpeg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+      </div>
+
+      <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/6.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Pechuga a la parrilla</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+Ensalada mixta</p>
+        </div>
+      </div>
+
+      <div class="row" style="margin-left: 0px;">
+       
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Pechuga Fitness</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+Ensalada mixta</p>
+        </div>
+         <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/11.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+      </div>
+
+       <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/10.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Chuleta</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+Ensalada mixta</p>
+        </div>
+      </div>
+
+       <div class="row" style="margin-left: 0px;">
+       
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Lomo Fino</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+Ensalada mixta</p>
+        </div>
+         <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/12.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+      </div>
+
+       <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/13.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Parrilla Personal</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+Ensalada mixta</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</template>
+
+<template name="descripcion_menu4">
+  <div class="menu">
+    <a href="/home"><i class="fa fa-reply" aria-hidden="true"></i></a>
+    <h3>BEBIDAS</h3>
+  </div>
+  <div class="details">
+    <div class="container-fluid">
+      <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/14.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px; ">
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Chicha Morada</h2>
+          <p>Vaso Grande</p>
+          <p>1L de Chicha</p>
+        </div>
+      </div>
+
+      <div class="row" style="margin-left: 0px;">
+       
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Limonada</h2>
+          <p>Vaso Grande</p>
+          <p>1L Limonada</p>
+        </div>
+         <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/15.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+      </div>
+
+      <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/16.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Gaseosa</h2>
+          <p>Inca Kola</p>
+          <p>Coca Cola</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="descripcion_menu3">
+  <div class="menu">
+    <a href="/home"><i class="fa fa-reply" aria-hidden="true"></i></a>
+    <h3>EXTRAS</h3>
+  </div>
+  <div class="details">
+    <div class="container-fluid">
+      <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/1.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Combo Infantil 1</h2>
+          <p>1/8 de Pollo</p>
+          <p>Hot Dog</p>
+        </div>
+      </div>
+
+      <div class="row" style="margin-left: 0px;">
+       
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Combo Infantil 2</h2>
+          <p>+Vaso de Chicha morada</p>
+          <p>+Ensalada mixta</p>
+        </div>
+         <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/3.jpeg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+      </div>
+
+      <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/2.jpeg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Salchipapas</h2>
+          <p>Hot Dog en Trisoso</p>
+          <p>Crocantes Papas Fritas</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="carta">
+    <div class="menu">
+      {{#if currentUser}}
+    <a href="/home"><i class="fa fa-reply" aria-hidden="true"></i></a>
+    {{else}}
+    <a href="/"><i class="fa fa-reply" aria-hidden="true"></i></a>
+    {{/if}}
+    <h3>CARTA</h3>
+  </div>
+  <div class="details">
+    <div class="container-fluid">
+
+      <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/1.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Pollo a la Brasa</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+Ensalada mixta</p>
+        </div>
+      </div>
+
+      <div class="row" style="margin-left: 0px;">
+       
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Salchibrasa</h2>
+          <p>+ 1/4 de Pollo a la Brasa</p>
+          <p>+Hot Dog</p>
+        </div>
+         <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/2.jpeg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+      </div>
+
+      <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/3.jpeg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>1/2 Pollo a la Brasa</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+Ensalada mixta</p>
+        </div>
+      </div>
+
+       <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>1/4 Pollo a la Brasa</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+ 1 gaseosa de 240ml</p>
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/4.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+        
+      </div>
+
+      <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/5.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+       
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Ensalada</h2>
+          <p>+ 1/4 de Pollo a la Brasa</p>
+          <p>+Hot Dog</p>
+        </div>
+         
+      </div>
+
+      <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Pechuga de pollo</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+Ensalada mixta</p>
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/6.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+        
+      </div>
+
+       <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/1.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Combo Limeñisimo</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+Ensalada mixta</p>
+        </div>
+      </div>
+
+      <div class="row" style="margin-left: 0px;">
+       
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Cuarto Limeño</h2>
+          <p>+ 1/4 de Pollo a la Brasa</p>
+          <p>+Hot Dog</p>
+        </div>
+         <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/1.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+      </div>
+
+      <div class="row" style="margin-left: 0px;">
+        <div style="width: 45%; margin: 0; display: inline-block;">
+          <img src="/7.jpg" style="width: 90%; margin: 0 auto; display: block; border-radius: 3px;">
+        </div>
+        <div style="width: 45%; margin: 0; display: inline-block; color: white; text-align: center;">
+          <h2>Lomo Saltado</h2>
+          <p>+Crocantes Papas Fritas</p>
+          <p>+Ensalada mixta</p>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+</template>
+
+<template name="menu_pedido">
+   <div class="menu">
+    <a href="/home"><i class="fa fa-reply" aria-hidden="true"></i></a>
+    <h3>PEDIDO</h3>
+  </div>
+  <div class="details" style="background-color: white; background-image: none">
+    <div class="menu-flex">
+      <p style="width: 55%; padding-top: 10px;">Las Tinajas</p>
+      <p  style="font-size: 30px; width: 15%"><i class="fa fa-question-circle-o" aria-hidden="true"></i></p>
+      <p style="font-size: 30px; width: 15%"><i class="fa fa-cart-plus" aria-hidden="true"></i></p>
+    </div>
+    <ul class="lista">
+      <li class="item-flex">
+        <div class="mayor">
+
+          <div class="cuadro cuadro-flex">
+            <img src="/1.jpg">
+            <p style="">1 Pollo a la Brasa con papas + ensalada</p>
+          </div>
+            
+          <div class="cuadro descripcion">
+            <p>1 Pollo a la brasa + crocantes papas fritas + ensalada mixta</p>
+          </div>
+
+        </div>
+        <div class="menor">
+          59.90
+        </div>
+      </li>
+
+      <li class="item-flex">
+        <div class="mayor">
+
+          <div class="cuadro cuadro-flex">
+            <img src="/3.jpeg">
+            <p>1 Pollo a la Brasa con papas + gaseosa de 1L</p>
+          </div>
+            
+          <div class="cuadro descripcion">
+            <p>1 Pollo a la brasa + crocantes papas fritas + 4 Picarones</p>
+          </div>
+
+        </div>
+        <div class="menor">
+          64.90
+        </div>
+      </li>
+
+      <li class="item-flex">
+        <div class="mayor">
+
+          <div class="cuadro cuadro-flex">
+            <img src="/4.jpg">
+            <p>1 Pollo a la Brasa con papas + 1/4 Pollo + 1L Peziduri</p>
+          </div>
+            
+          <div class="cuadro descripcion">
+            <p>1 Pollo a la brasa + crocantes papas fritas + ensalada mixta</p>
+          </div>
+
+        </div>
+        <div class="menor">
+          72.90
+        </div>
+      </li>
+
+      <li class="item-flex">
+        <div class="mayor">
+
+          <div class="cuadro cuadro-flex">
+            <img src="/5.jpg">
+            <p>Combo + Chicha</p>
+          </div>
+            
+          <div class="cuadro descripcion">
+            <p>1 Pollo a la brasa + crocantes papas fritas + ensalada mixta + 1L Chicha</p>
+          </div>
+
+        </div>
+        <div class="menor">
+          39.90
+        </div>
+      </li>
+
+      <li class="item-flex">
+        <div class="mayor">
+
+          <div class="cuadro cuadro-flex">
+            <img src="/6.jpg">
+            <p>Combo + Helado</p>
+          </div>
+            
+          <div class="cuadro descripcion">
+            <p>1 Pollo a la brasa + crocantes papas fritas + 2L de Chicha</p>
+          </div>
+
+        </div>
+        <div class="menor">
+          29.90
+        </div>
+      </li>
+    </ul>
+  </div>
+</template>

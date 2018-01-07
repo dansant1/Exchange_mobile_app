@@ -3,8 +3,8 @@
 		{
 			"env":
 				{
-        	"ROOT_URL": "http://app.aecheckcash.com",
-					"MONGO_URL": "mongodb://admin:admin@ds151048.mlab.com:51048/exchange"
+        	"ROOT_URL": "http://tinajasapp.meteorapp.com",
+					"MONGO_URL": "mongodb://admin:admin@ds119250.mlab.com:19250/tinajasapp"
 				}
 		},
 		"apnOptions:": {}

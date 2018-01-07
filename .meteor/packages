@@ -27,9 +27,7 @@ kadira:blaze-layout
 accounts-password
 alanning:roles
 fortawesome:fontawesome
-cfs:standard-packages
 cfs:gridfs
-raix:push
 launch-screen
 email
 accolver:twilio-meteor

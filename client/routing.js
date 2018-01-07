@@ -1,142 +1,69 @@
 FlowRouter.route('/', {
 	name: 'Inicio',
 	action() {
-		BlazeLayout.render('Home');
-	}
-});
-
-FlowRouter.route('/home', {
-	name: 'Home',
-	action() {
-		BlazeLayout.render('Home');
-	}
-});
-
-FlowRouter.route('/registro', {
-	name: 'Registro',
-	action() {
-		BlazeLayout.render('registro');
-	}
-});
-
-FlowRouter.route('/promociones', {
-	name: 'Promos',
-	action() {
-		BlazeLayout.render('promociones');
-	}
-});
-
-FlowRouter.route('/chat', {
-	name: 'Chat2',
-	action: function () {
-		
-		if (Meteor.userId()) {
-			BlazeLayout.render('chat');	
-
-		} else {
-			BlazeLayout.render('login3');
-		}
-		
-	}
-});
-
-FlowRouter.route('/chat/:asesor', {
-	name: 'Chat.New',
-	action() {
-		BlazeLayout.render('NuevoMensaje');
-	}
-});
+		BlazeLayout.render('inicio')
+	} 
+})
 
 FlowRouter.route('/login', {
-	name: 'Login',
+	name: 'login',
 	action() {
-		BlazeLayout.render('login');
-	}
-});
+		BlazeLayout.render('login')
+	} 
+})
 
-FlowRouter.route('/olvide', {
-	name: 'Olvide',
+FlowRouter.route('/signup', {
+	name: 'signup',
 	action() {
-		BlazeLayout.render('olvide');
-	}
-});
+		BlazeLayout.render('signup')
+	} 
+})
 
-FlowRouter.route('/enviar', {
-	name: 'Enviar',
+FlowRouter.route('/home', {
+	name: 'home',
 	action() {
-		BlazeLayout.render('enviar');
-	}
-});
+		BlazeLayout.render('home')
+	} 
+})
 
-FlowRouter.route('/editar', {
-	name: 'Editar',
+FlowRouter.route('/descripcion', {
+	name: 'descripcion',
 	action() {
-		BlazeLayout.render('editar');
-	}
-});
+		BlazeLayout.render('descripcion_menu')
+	} 
+})
 
-FlowRouter.route('/ordenes', {
-	name: 'Ordenes',
+FlowRouter.route('/descripcion2', {
+	name: 'descripcion',
 	action() {
-		BlazeLayout.render('ordenes');
-	}
-});
+		BlazeLayout.render('descripcion_menu2')
+	} 
+})
 
-FlowRouter.route('/ordenes/:orden', {
-	name: 'Orden',
+FlowRouter.route('/descripcion3', {
+	name: 'descripcion',
 	action() {
-		BlazeLayout.render('orden');
-	}
-});
+		BlazeLayout.render('descripcion_menu3')
+	} 
+})
 
-FlowRouter.route('/calculadora', {
-	name: 'Calculadora',
+FlowRouter.route('/descripcion4', {
+	name: 'descripcion',
 	action() {
-		BlazeLayout.render('calculadora');
-	}
-});
+		BlazeLayout.render('descripcion_menu4')
+	} 
+})
 
-// Admin
-FlowRouter.route('/admin', {
-	name: 'Admin',
+FlowRouter.route('/carta', {
+	name: 'carta',
 	action() {
-		console.log('hola');
-		BlazeLayout.render('Admin', { content: "adminHome"});
-		console.log('mudno');
-	}
-});
+		BlazeLayout.render('carta')
+	} 
+})
 
-FlowRouter.route('/admin/tarifas', {
-	name: 'Admin.tarifas',
+FlowRouter.route('/pedido', {
+	name: 'pedido',
 	action() {
-		BlazeLayout.render('Admin', {content: "TarifasAdmin"});
-	}
-});
-
-FlowRouter.route('/admin/promociones', {
-	name: 'Admin.promociones',
-	action() {
-		BlazeLayout.render('Admin', {content: "PromocionesAdmin"});
-	}
-});
-
-FlowRouter.route('/admin/ordenes', {
-	name: 'Admin.ordenes',
-	action() {
-		BlazeLayout.render('Admin', {content: "ordenes"});
-	}
-});
-
-FlowRouter.route('/admin/disenio', {
-	name: 'Admin.disenio',
-	action() {
-		BlazeLayout.render('Admin', {content: "disenio"});
-	}
-});
-
-FlowRouter.route('/asesores', {
-	name: 'Asesores',
-	action() {
-		BlazeLayout.render('AdminAsesor');
-	}
-});
+		BlazeLayout.render('menu_pedido')
+	} 
+})

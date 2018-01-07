@@ -1,19 +1,14 @@
 // the entire section is optional.
 App.info({
   id: 'com.industec.nombre.aecheck',
-  name: 'A&E Envíos',
-  description: 'Casa de cambio',
+  name: 'Las Tinajas',
+  description: 'polleria',
   author: 'Grupo DDV SAC',
   email: 'danieldelgadilloh@gmail.com',
   version: '1.0.10',
 });
 
 App.setPreference('Orientation', 'portrait');
-
-App.configurePlugin('phonegap-plugin-push', {
-  SENDER_ID: 246059673095
-});
-
 
 
 App.accessRule('*');
@@ -47,11 +42,11 @@ App.launchScreens({
   'iphone6p_portrait': 'public/logos/launch_1242x2208.png'
 });
 
-App.appendToConfig(`<platform name="ios">
+/*App.appendToConfig(`<platform name="ios">
     <config-file platform="ios" target="*-Info.plist" parent="NSPhotoLibraryUsageDescription">
       <string>Accederemos a las fotos de su dispositivo para que seleccione su ID de Identificacion</string>
     </config-file>
     <config-file platform="ios" target="*-Info.plist" parent="NSCameraUsageDescription">
       <string>Accederemos a las fotos de su dispositivo para que seleccione su ID de Identificacion</string>
     </config-file>
-  </platform>`);
+  </platform>`);*/
